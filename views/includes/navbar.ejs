@@ -1,0 +1,90 @@
+<style>
+  .search-btn{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .search-btn:hover{
+    background-color: #fe424d;
+    color: #fff;
+  }
+
+  .search-btn i {
+    display: inline;
+    margin-right: 0.5rem;
+  }
+
+  .search-inp{
+    border-radius: 25px;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 1rem;
+  }
+
+  .fluid-bg{
+            position: relative;
+            z-index: 10;
+            border-radius: 25px;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+</style>
+
+<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <div class="navbar-nav ms-1">
+        <a class="nav-link" href="/listings">Explore</a>
+    </div>
+    <button class="navbar-toggler" id="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
+      <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" action="/listings/search" method="POST">
+            <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" aria-label="Search" name="searchInp" id="search-inp"/>
+            <button class="btn search-btn" type="submit" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+            
+          </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <% if(!currUser){ %>
+          <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in</b></a>
+        <%}%>
+        <% if(currUser){ %>
+          <a class="nav-link" href="/logout">Log out</a>
+        <%}%>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  let navBarToggler = document.getElementById('navbar-toggler');
+    navBarToggler.addEventListener('click', () => {
+        console.log("clicked")
+        let el = document.getElementById('navbarNavAltMarkup');
+        el.classList.toggle('fluid-bg');
+        
+    });
+
+    let searchInp = document.getElementById('search-inp');
+    let searchBtn = document.getElementById('search-btn');
+
+    // searchBtn.addEventListener('click', (el)=>{
+    //   el.preventDefault();
+    //   let value = searchInp.value.trim().toLowerCase();
+    //   console.log(value);
+    // })
+
+</script>
